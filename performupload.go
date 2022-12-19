@@ -3,7 +3,6 @@ package yadisk
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 )
 
@@ -20,7 +19,7 @@ func PerformUpload(url string, data io.Reader) error {
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode != 201 {
-		body, err := ioutil.ReadAll(resp.Body)
+		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			return err
 		}
